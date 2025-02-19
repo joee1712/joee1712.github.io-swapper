@@ -1,252 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shaders Slider</title>
-    <script type="module" crossorigin src="assets/index.36aab0d1.js"></script>
-    <link rel="modulepreload" href="assets/vendor.315b6b96.js">
-    <link rel="stylesheet" href="assets/index.ec7dc4bf.css">
-</head>
-
-<body>
-    <!-- Shaders slider -->
-    <div class="swiper">
-        <div class="swiper-wrapper" id="swiper-wrapper">
-            <!-- Slides will be inserted here -->
-        </div>
-
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+    <title>Swiper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="h-screen w-screen flex items-center justify-center bg-black overflow-hidden"
+  >
+    <div class="relative w-screen h-screen overflow-hidden">
+      <div
+        id="swiper-wrapper"
+        class="flex transition-transform duration-500 h-full"
+      >
+      </div>
+      <button id="prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white p-4 transition duration-300">❮</button>
+      <button id="next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white p-4 transition duration-300">❯</button>
     </div>
-
     <script>
-        // Data for slides
-        const slidesData = [
-        {
-            imgSrc: './images/01.jpg',
-            title: 'The first picture we took together 🥰❤️'
-        }, {
-            imgSrc: './images/02.jpg',
-            title: 'Our first session together'
-        }, {
-            imgSrc: './images/03.jpg',
-            title: 'مديرين بنك الجمال والدلال☝🏻'
-        }, {
-            imgSrc: './images/04.jpg',
-            title: 'ياصباح اعمال الخير'
-        }, {
-            imgSrc: './images/05.jpg',
-            title: '😘👌🏻'
-        }, {
-            imgSrc: './images/06.jpg',
-            title: 'انا والقمر والشيء اللي بينور في السما ده'
-        }, {
-            imgSrc: './images/07.jpg',
-            title: 'اوعي الماتشي🤙🏻'
-        }, {
-            imgSrc: './images/08.jpg',
-            title: 'همممم ياجمل'
-        }, {
-            imgSrc: './images/09.jpg',
-            title: 'The first time I put my head on your shoulder'
-        }, {
-            imgSrc: './images/10.jpg',
-            title: 'الاوتفيت من اختياري☝🏻'
-        }, {
-            imgSrc: './images/11.jpg',
-            title: 'اخواااااط'
-        }, {
-            imgSrc: './images/12.jpg',
-            title: 'Our street'
-        }, {
-            imgSrc: './images/13.jpg',
-            title: 'وبعدين؟🤨'
-        }, {
-            imgSrc: './images/14.jpg',
-            title: 'ايه ده انا مين فيهم؟'
-        }, {
-            imgSrc: './images/15.jpg',
-            title: 'يارب نتجوز'
-        }, {
-            imgSrc: './images/16.jpg',
-            title: 'The real Rapunzel'
-        }, {
-            imgSrc: './images/17.jpg',
-            title: 'First time we talk on video call'
-        }, {
-            imgSrc: './images/18.jpg',
-            title: 'Favorite picture❤️'
-        }, {
-            imgSrc: './images/19.jpg',
-            title: 'The most beautiful eyes in this universe'
-        }, {
-            imgSrc: './images/20.jpg',
-            title: 'الكوكو وهو لسة صاحي'
-        }, {
-            imgSrc: './images/21.jpg',
-            title: 'ابوس النونه'
-        }, {
-            imgSrc: './images/22.jpg',
-            title: '✨🤩'
-        },{
-            imgSrc: './images/23.jpg',
-            title: 'ثوابع🤏🏻'
-        },{
-            imgSrc: './images/24.jpg',
-            title: '😛✌🏻'
-        },{
-            imgSrc: './images/25.jpg',
-            title: 'One of the best feelings'
-        },{
-            imgSrc: './images/26.jpg',
-            title: 'كتكوتي اللي بيكبر'
-        },{
-            imgSrc: './images/27.jpg',
-            title: '👍🏻'
-        },{
-            imgSrc: './images/28.jpg',
-            title: 'اجانب والله'
-        },{
-            imgSrc: './images/29.jpg',
-            title: '😘😋'
-        },{
-            imgSrc: './images/30.jpg',
-            title: 'Opening tech mental S2'
-        },{
-            imgSrc: './images/31.jpg',
-            title: 'دفيرة🤏🏻'
-        },{
-            imgSrc: './images/32.jpg',
-            title: '✨'
-        },{
-            imgSrc: './images/33.jpg',
-            title: 'ما بعد الانتهاء من تعليق زينه رمضان'
-        },{
-            imgSrc: './images/34.jpg',
-            title: 'Techne 2023'
-        },{
-            imgSrc: './images/35.jpg',
-            title: 'Put your head on my shoulder'
-        },{
-            imgSrc: './images/36.jpg',
-            title: 'ليحتضنك بدلا عني'
-        },{
-            imgSrc: './images/37.jpg',
-            title: 'يخلاثووووو'
-        },{
-            imgSrc: './images/38.jpg',
-            title: 'النون الفنان✨'
-        },{
-            imgSrc: './images/39.jpg',
-            title: 'ثبيدر من'
-        },{
-            imgSrc: './images/40.jpg',
-            title: 'احنا شبه بعض كده ليه؟😭'
-        },{
-            imgSrc: './images/41.jpg',
-            title: 'توتوووس'
-        },{
-            imgSrc: './images/42.jpg',
-            title: 'يتم نوم'
-        },{
-            imgSrc: './images/43.jpg',
-            title: 'الوردة بتصور وردة'
-        },{
-            imgSrc: './images/44.jpg',
-            title: 'اول صورة احبها ليكي'
-        },{
-            imgSrc: './images/45.jpg',
-            title: '🥰💗'
-        },{
-            imgSrc: './images/46.jpg',
-            title: 'نسختي الانثي🤨'
-        },{
-            imgSrc: './images/47.jpg',
-            title: 'انا ومدينه العالمين والعالم بتاعي🤩💖'
-        },{
-            imgSrc: './images/48.jpg',
-            title: 'الماتشي المعكوس🤙🏻😘'
-        },{
-            imgSrc: './images/49.jpg',
-            title: 'لو راجل طلع الفرق🤨'
-        },{
-            imgSrc: './images/50.jpg',
-            title: 'راسي المائل علي كتفك يعيد الاتزان لعالمي المختل'
-        },{
-            imgSrc: './images/51.jpg',
-            title: 'الفراعنه☝🏻'
-        },{
-            imgSrc: './images/52.jpg',
-            title: '👍🏻كله ميه ميه👍🏻'
-        },{
-            imgSrc: './images/53.jpg',
-            title: 'اول مرة نتاخر بره البيت🤙🏻😋'
-        },{
-            imgSrc: './images/54.jpg',
-            title: 'تم علاج☝🏻🤩'
-        },{
-            imgSrc: './images/55.jpg',
-            title: 'يتم استغراب موضوع'
-        },{
-            imgSrc: './images/56.jpg',
-            title: 'بلكونه ارابيسك🥳'
-        },{
-            imgSrc: './images/57.jpg',
-            title: 'النجمة ✨'
-        },{
-            imgSrc: './images/58.jpg',
-            title: 'Us👉🏻👈🏻'
-        },{
-            imgSrc: './images/59.jpg',
-            title: 'انا نامت 😴'
-        },{
-            imgSrc: './images/60.jpg',
-            title: 'المكتبة'
-        },{
-            imgSrc: './images/61.jpg',
-            title: 'ميكث ثوكلاته'
-        },{
-            imgSrc: './images/62.jpg',
-            title: 'الدكتور☝🏻🤨'
-        },{
-            imgSrc: './images/63.jpg',
-            title: '😗😗😗😗'
-        },{
-            imgSrc: './images/64.jpg',
-            title: 'ثبايدر مان 🥰'
-        }
+      const slidesData = [
+      { imgSrc: "./images/01.jpg", title: "The first picture we took together 🥰❤️" },
+      { imgSrc: "./images/02.jpg", title: "Our first session together" },
+      { imgSrc: "./images/03.jpg", title: "مديرين بنك الجمال والدلال☝🏻" },
+      { imgSrc: "./images/04.jpg", title: "ياصباح اعمال الخير" },
+      { imgSrc: "./images/05.jpg", title: "😘👌🏻" },
+      { imgSrc: "./images/06.jpg", title: "انا والقمر والشيء اللي بينور في السما ده" },
+      { imgSrc: "./images/07.jpg", title: "اوعي الماتشي🤙🏻" },
+      { imgSrc: "./images/08.jpg", title: "همممم ياجمل" },
+      { imgSrc: "./images/09.jpg", title: "The first time I put my head on your shoulder" },
+      { imgSrc: "./images/10.jpg", title: "الاوتفيت من اختياري☝🏻" },
+      { imgSrc: "./images/11.jpg", title: "اخواااااط" },
+      { imgSrc: "./images/12.jpg", title: "Our street" },
+      { imgSrc: "./images/13.jpg", title: "وبعدين؟🤨" },
+      { imgSrc: "./images/14.jpg", title: "ايه ده انا مين فيهم؟" },
+      { imgSrc: "./images/15.jpg", title: "يارب نتجوز" },
+      { imgSrc: "./images/16.jpg", title: "The real Rapunzel" },
+      { imgSrc: "./images/17.jpg", title: "First time we talk on video call" },
+      { imgSrc: "./images/18.jpg", title: "Favorite picture❤️" },
+      { imgSrc: "./images/19.jpg", title: "The most beautiful eyes in this universe" },
+      { imgSrc: "./images/20.jpg", title: "الكوكو وهو لسة صاحي" },
+      { imgSrc: "./images/21.jpg", title: "ابوس النونه" },
+      { imgSrc: "./images/22.jpg", title: "✨🤩" },
+      { imgSrc: "./images/23.jpg", title: "ثوابع🤏🏻" },
+      { imgSrc: "./images/24.jpg", title: "😛✌🏻" },
+      { imgSrc: "./images/25.jpg", title: "One of the best feelings" },
+      { imgSrc: "./images/26.jpg", title: "كتكوتي اللي بيكبر" },
+      { imgSrc: "./images/27.jpg", title: "👍🏻" },
+      { imgSrc: "./images/28.jpg", title: "اجانب والله" },
+      { imgSrc: "./images/29.jpg", title: "😘😋" },
+      { imgSrc: "./images/30.jpg", title: "Opening tech mental S2" },
+      { imgSrc: "./images/31.jpg", title: "دفيرة🤏🏻" },
+      { imgSrc: "./images/32.jpg", title: "✨" },
+      { imgSrc: "./images/33.jpg", title: "ما بعد الانتهاء من تعليق زينه رمضان" },
+      { imgSrc: "./images/34.jpg", title: "Techne 2023" },
+      { imgSrc: "./images/35.jpg", title: "Put your head on my shoulder" },
+      { imgSrc: "./images/36.jpg", title: "ليحتضنك بدلا عني" },
+      { imgSrc: "./images/37.jpg", title: "يخلاثووووو" },
+      { imgSrc: "./images/38.jpg", title: "النون الفنان✨" },
+      { imgSrc: "./images/39.jpg", title: "ثبيدر من" },
+      { imgSrc: "./images/40.jpg", title: "احنا شبه بعض كده ليه؟😭" },
+      { imgSrc: "./images/41.jpg", title: "توتوووس" },
+      { imgSrc: "./images/42.jpg", title: "يتم نوم" },
+      { imgSrc: "./images/43.jpg", title: "الوردة بتصور وردة" },
+      { imgSrc: "./images/44.jpg", title: "اول صورة احبها ليكي" },
+      { imgSrc: "./images/45.jpg", title: "🥰💗" },
+      { imgSrc: "./images/46.jpg", title: "نسختي الانثي🤨" },
+      { imgSrc: "./images/47.jpg", title: "انا ومدينه العالمين والعالم بتاعي🤩💖" },
+      { imgSrc: "./images/48.jpg", title: "الماتشي المعكوس🤙🏻😘" },
+      { imgSrc: "./images/49.jpg", title: "لو راجل طلع الفرق🤨" },
+      { imgSrc: "./images/50.jpg", title: "راسي المائل علي كتفك يعيد الاتزان لعالمي المختل" },
+      { imgSrc: "./images/51.jpg", title: "الفراعنه☝🏻" },
+      { imgSrc: "./images/52.jpg", title: "👍🏻كله ميه ميه👍🏻" },
+      { imgSrc: "./images/53.jpg", title: "اول مرة نتاخر بره البيت🤙🏻😋" },
+      { imgSrc: "./images/54.jpg", title: "تم علاج☝🏻🤩" },
+      { imgSrc: "./images/55.jpg", title: "يتم استغراب موضوع" },
+      { imgSrc: "./images/56.jpg", title: "بلكونه ارابيسك🥳" },
+      { imgSrc: "./images/57.jpg", title: "النجمة ✨" },
+      { imgSrc: "./images/58.jpg", title: "Us👉🏻👈🏻" },
+      { imgSrc: "./images/59.jpg", title: "انا نامت 😴" },
+      { imgSrc: "./images/60.jpg", title: "المكتبة" },
+      { imgSrc: "./images/61.jpg", title: "ميكث ثوكلاته" },
+      { imgSrc: "./images/62.jpg", title: "الدكتور☝🏻🤨" },
+      { imgSrc: "./images/63.jpg", title: "😗😗😗😗" },
+      { imgSrc: "./images/64.jpg", title: "ثبايدر مان 🥰" }
+      
         ];
+      const wrapper = document.getElementById("swiper-wrapper");
+      slidesData.forEach((slide) => {
+        const slideDiv = document.createElement("div");
+        slideDiv.className =
+          "swiper-slide min-w-full h-full flex flex-col items-center justify-center relative";
+        slideDiv.innerHTML = `
+              <img src="${slide.imgSrc}" class="w-full h-full object-cover absolute top-0 left-0">
+              <div class="absolute bottom-4 text-center text-white px-6 py-2">
+                  <p class="text-3xl font-bold">${slide.title}</p>
+              </div>
+          `;
+        wrapper.appendChild(slideDiv);
+      });
 
-        // Get the swiper wrapper element
-        const swiperWrapper = document.getElementById('swiper-wrapper');
+      let index = 0;
+      const totalSlides = slidesData.length;
 
-        // Function to create and append slides
-        slidesData.forEach(slide => {
-            const slideElement = document.createElement('div');
-            slideElement.className = 'swiper-slide';
+      function showSlide(index) {
+        wrapper.style.transform = `translateX(-${index * 100}%)`;
+      }
 
-            const imgElement = document.createElement('img');
-            imgElement.className = 'swiper-gl-image';
-            imgElement.src = slide.imgSrc;
-            imgElement.alt = '';
+      document.getElementById("next").addEventListener("click", () => {
+        index = (index + 1) % totalSlides;
+        showSlide(index);
+      });
 
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'swiper-slide-content';
+      document.getElementById("prev").addEventListener("click", () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        showSlide(index);
+      });
 
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'swiper-slide-title';
-            titleDiv.innerHTML = slide.title;
-
-            // Assemble the slide
-            contentDiv.appendChild(titleDiv);
-            slideElement.appendChild(imgElement);
-            slideElement.appendChild(contentDiv);
-            swiperWrapper.appendChild(slideElement);
-        });
+      // دعم السحب باللمس
+      let startX = 0,
+        endX = 0;
+      wrapper.addEventListener(
+        "touchstart",
+        (e) => (startX = e.touches[0].clientX)
+      );
+      wrapper.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+        if (diff > 50) {
+          index = (index + 1) % totalSlides;
+        } else if (diff < -50) {
+          index = (index - 1 + totalSlides) % totalSlides;
+        }
+        showSlide(index);
+      });
     </script>
-</body>
-
+  </body>
 </html>
